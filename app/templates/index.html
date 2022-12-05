@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text Extraction </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../static/css/materialize.css" media="screen,projection"/>
+</head>
+<body>
+    
+  <nav>
+    <div class="nav-wrapper" style="background-color: #2B3A55;">
+      <a id="logo-container" class="brand-logo center">Text Extraction</a>
+      <div style="margin-right: auto;" >
+        Made by : Pooja Yadav & Sheetal Mahajan
+      </div>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <div class="row">
+            <form action="/" method="post" class="col s12" enctype="multipart/form-data">
+                <div class="row">
+
+                    <div class="input-field col s5" style="margin-left: 20px; margin-top: 50px;" >
+                        <div class="row">
+                            <div class="row">
+                                <label for="first_name"><b>Upload Image</b></label>
+                                <div class="file-field input-field">
+                                    <div class="btn" style="background-color: #2B3A55;">
+                                        <span>Browse</span>
+                                        <input type="file" name="image_upload" id="image_upload" />
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input type="text" class="file-path validate" placeholder="Upload Image" name="image_name" id="image_name" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row center" style="margin-top: 50px;">
+                                <button id="submit" type="submit" class="btn-large" style="background-color: #2B3A55;"> Extract</button>
+                            </div>
+                        </div>
+                        <div>
+                            {% if text %}
+                            <br>
+                            <h5>Extracted</h5>
+                            {% for i in text: %}
+                            <p>{{ i }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="input-field col s3">
+                        <div style="text-align: center; padding-top : 50px; margin-left: 100px; ">
+                            <img src="{{ url_for('static', filename=full_filename) }}" width="500" height="300">
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </div>
+    </div>
+
+  </div>
+
+  <script src="../static/js/materialize.js"></script>
+  <script>
+    var imagebox = document.getElementById('imgebox');
+    var textbox = document.getElementById('textboxes');
+
+    document.getElementById('image_upload').onchange = function (){
+        document.getElementById('image_name').value = this.slice(12,100);
+    };
+
+  </script>
+
+
+</body>
+</html>
